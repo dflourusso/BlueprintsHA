@@ -16,7 +16,6 @@ blueprint:
           multiple: true
 
 mode: single
-max_exceeded: silent
 
 variables:
   switches: !input 'switches'
@@ -35,4 +34,4 @@ action:
     data: {}
     target:
       entity_id: >-
-        {{ expand(switches) | select('is_state', 'on' if trigger.to_state.state == 'off' else 'off') | list }}
+        {{ switches | select('is_state', 'on' if trigger.to_state.state == 'off' else 'off') | list }}
