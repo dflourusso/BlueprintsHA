@@ -35,3 +35,4 @@ action:
     target:
       entity_id: >-
         {{ switches | select('is_state', 'on' if trigger.to_state.state == 'off' else 'off') | list }}
+  - delay: 0.1
