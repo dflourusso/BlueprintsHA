@@ -1,7 +1,7 @@
 blueprint:
-  name: Link Multiple Switches
+  name: Sync Multiple Switches
   description: |
-    ## Link multiple switches together v1.0.1
+    ## Sync multiple switches together
 
     Select multiple switch entities to link their on/off state. If any selected switch entity is turned on or off, the other selected entities will be sent a matching on or off command.
   domain: automation
