@@ -1,0 +1,42 @@
+blueprint:
+  name: Master On
+  description: |
+    ## Turn multiple switches ON based on other switch
+  domain: automation
+  homeassistant:
+    min_version: 2022.5.0
+  input:
+    source:
+      name: Controller switch
+      selector:
+        entity:
+          domain: switch
+    target:
+      name: Controlled switches
+      selector:
+        entity:
+          domain: switch
+          multiple: true
+
+mode: single
+
+variables:
+  source: !input 'source'
+  target: !input 'target'
+
+trigger:
+  - platform: state
+    entity_id: !input 'source'
+    to: "on"
+
+action:
+  - service: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: '{{ target }}'
+  - service: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: '{{ source }}'
